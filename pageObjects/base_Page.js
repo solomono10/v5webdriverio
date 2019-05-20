@@ -9,8 +9,28 @@ class Base_Page {
         return browser.getUrl();
     }
 
+    pause(time){
+        browser.pause(time);
+    }
+
     sendKeys(element, text){
         element.setValue(text);
+    }
+
+    clearValue(element){
+        element.clearValue();
+    }
+
+    getValue(element){
+        element.getValue();
+    }
+
+    addValue(element, value){
+        element.addValue(value);
+    }
+
+    getSize(element, prop){
+        element.getSize(prop);
     }
 
     click(element){
@@ -19,10 +39,6 @@ class Base_Page {
 
     doubleClick(element){
         element.doubleClick();
-    }
-
-    pause(time){
-        browser.pause(time);
     }
 
     waitForDisplayed(element, ms, reverse, error){
@@ -41,8 +57,48 @@ class Base_Page {
         return browser.waitUntil(condition, timeout, timeoutMsg, interval);
     }
 
+    getCookies(names){
+        return browser.getCookies(names);
+    }
+
+    setCookies(name){
+        browser.setCookies(name);
+    }
+
+    deleteCookies(name){
+        browser.deleteCookies(name);
+    }
+
+    reloadSession(){
+        browser.reloadSession();
+    }
+
+    debug(){
+        browser.debug();
+    }
+
+    scrollIntoView(element, scrollIntoViewOptions){
+        element.scrollIntoView(scrollIntoViewOptions);
+    }
+
     dragAndDrop(element, target, duration){
         element.dragAndDrop(target, duration);
+    }
+
+    switchWindow(urlOrTitleToMatch){
+        browser.switchWindow(urlOrTitleToMatch);
+    }
+    
+    newWindow(url, windowName, windowFeatures){
+        browser.newWindow(url, windowName, windowFeatures);
+    }
+    
+    getWindowSize(){
+        return browser.getWindowSize();
+    }
+    
+    setWindowSize(){
+        browser.setWindowSize(width, height);
     }
 
     isDisplayed(element){
@@ -77,6 +133,29 @@ class Base_Page {
         return element.getAttribute(attributeName);
     }
 
+    getProperty(element, property){
+        return element.getProperty(property);
+    }
+
+    getHTML(element, includeSelectorTag){
+        element.getHTML(includeSelectorTag);
+    }
+
+    selectByAttribute(element, attribute, value){
+        element.selectByAttribute(attribute, value);
+    }
+
+    selectByIndex(element, index){
+        element.selectByIndex(index);
+    }
+
+    selectByVisibleText(element, text){
+        element.selectByVisibleText(text)
+    }
+
+    execute(script, arguments){
+        browser.execute();
+    }
 
     waitForDisplayed(element, ms, reverse, error){
         element.waitForDisplayed();
@@ -100,18 +179,7 @@ class Base_Page {
 
     getCssProperty(locator, propertyName){
         return browser.getCssProperty(locator, propertyName);
-    }
-
-
-
-    // setViewportSize(width, height){
-    //     browser.setViewportSize({
-    //         width: width,
-	// 		height: height,
-    //     })
-    // }
-
-    
+    }  
 }
 
 module.exports = Base_Page;

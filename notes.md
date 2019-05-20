@@ -3,7 +3,7 @@
 2. Download/install Java JDK
 
 
-## Steps
+## Steps to webdriverio
 1. Create a project folder and `cd` into it
 2. run `git init`
 3. run `npm init` for custom package.json or `npm init -y` for generic package.json
@@ -76,15 +76,125 @@ f. Generate Configuration File
         './tests/*.js'
     ],
 
-5. Allure reporter
+## Steps to configuring Allure reporter
    https://webdriver.io/docs/allure-reporter.html
 
 
- 
-4. create `pageObjects` folder
-5. create `tests` folder
+## Steps to setup Jenkins
+1. Download .war file from Jenkins site
+2. Drag it into wherever you would like jenkins housed e.g Documents.
+3. cd into the directory where Jenkins is housed 
+4. Trigger Jenkins  (Always do this each time to use jenkins)
+   $ java -jar jenkins.war
+
+   NOTE:
+   If you need to change the PORT number then use below command. Default is :8080
+   $ java -jar jenkins.war --httpPORT=5555
+
+5. Browse to http://localhost:8080
+6. You should find a directory on the UI, navigate to it, copy the password from it & paste on the UI
+7. On jenkins UI, install suggested plugins. Wait for this to complete
+8. Create  first admin user on Jenkins UI
+
+9. Now, we need to install relevant plugins after signing into jenkins UI
+   Manage Jenkins > Manage Plugins > Available (Tab)
+10. Install the following plugins 
+   - Nodejs, 
+   - HTML Publisher
+   - Post build task
 
 
+11. Now, we need to align Jenkins with our Node project
+    Manage Jenkins > Global Tool Configuration > NodeJS (section)
+
+    Complete the NodeJS (section)
+    - Name: Node
+    - click `install automatically` checkbox
+    - Global npm packages to install: bower@~1.8.0 grunt-cli@~1.2.0
+    - Click 'Apply' button
+
+12. Now, configure our Jenkins instance and point it to our NodeJS bin folder
+    Manage Jenkins > Configure System
+
+    Click Configure System and follow the following steps
+    - In the Global properties section, click Environment variables checkbox
+    - Click the 'Add' button
+
+    Complete the form
+    - Name: PATH
+    - Value: $PATH:/usr/local/bin/node
+
+    Now, we need to create a new job
+    - On the Jenkins Homepage, click 'New item' on the LHS menu
+    - Fill out 'Enter an item name' field
+    - Select 'Freestyle project' or other as you want.
+    - Click OK
+
+    Now, we are taken to the job configure homepage
+    - On the 'General' tab, click the 'Advance' button in the first section
+    - Check 'Use custom workspace' checkbox. Complete form
+    Directory: /Users/kayodeomo/Documents/workspace/.../.../webdriverioFramework/node_modules/.bin
+    Display Name: Webdriverio framework
+    - Click 'Apply'
+
+    NOTE:- Directory is the complete path to the bin of our project's node_modules
+
+    Now, we may add parameters (which we can change at runtime)
+    - Click 'Add Parameter'
+    - Select 'String Parameter'
+    
+    Complete the form to add a parameter
+    Name: testFile
+    Default Value: contactUsTest.js
+    Description: This parameter is to run a single test
+
+    NOTE:-
+    Name is actually a 'variable' name
+
+    To add more String Parameters, click the 'Add Parameter' button each time
+    Name: logType
+    Default Value: silent
+    Description: 
+
+    To add more String Parameters
+    Name: baseUrl
+    Default Value: http://www.webdriveruniversity.com/
+    Description: 
+    
+    Now, we need to need to compose our Build shell script
+    - Scroll down to the 'Build' section. 
+    - Click 'Add build step' button
+    - Select 'Execute shell' option
+    - Compose the build commands as below (add or remove commands as required)
+
+    npm install
+    npm test -- --baseUrl="$baseUrl" --logLevel="$logType" --spec="$testFile"
+
+    Now, to build our project (i.e. run our tests) 
+    - Click Apply and Save the above settings
+    - On the Jenkins homepage, select our job/project & click 'Build with Parameters' on LHS
+      We are provided with a form with which we can alter  can alter our build parameters
+    - Click 'Build'
+
+    Now, to set build triggers
+    - Go to Build Triggers section
+    - Check 'Build periodically'
+    - Enter cron value to specify build schedule 
+
+
+
+
+
+    
+
+
+
+
+
+
+
+## TeamCity
+https://www.jetbrains.com/teamcity/documentation/
 
 
 
