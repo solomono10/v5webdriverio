@@ -185,10 +185,6 @@ f. Generate Configuration File
 
 
 
-    
-
-
-
 
 
 
@@ -196,6 +192,9 @@ f. Generate Configuration File
 ## TeamCity
 https://www.jetbrains.com/teamcity/documentation/
 
+## BrowserStack
+https://www.browserstack.com/users/sign_up
+https://www.browserstack.com/automate/webdriverio
 
 
 https://semaphoreci.com/community/tutorials/setting-up-an-end-to-end-testing-workflow-with-gulp-mocha-and-webdriverio
