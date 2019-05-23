@@ -28,11 +28,14 @@
 
 4. install dependencies (etc)
 
-a. Download webdriverio, mocha, chai
+#. Download webdriverio, mocha, chai
    $ npm install webdriverio@latest --save-dev
    $ npm install mocha@latest --save-dev
    $ npm install chai@latest --save-dev
    $ npm install @wdio/mocha-framework --save-dev
+
+# Download spec reporter & add 'spec' to reporters: ['dot', 'spec'] in wdio.config.js
+   $ npm install @wdio/spec-reporter --save-dev
 
 b. download selenium-standalone server
    $ npm install @wdio/selenium-standalone-service --save-dev

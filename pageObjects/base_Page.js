@@ -153,9 +153,9 @@ class Base_Page {
         element.selectByVisibleText(text)
     }
 
-    execute(script, arguments){
-        browser.execute();
-    }
+    // execute(script, arguments){
+    //     browser.execute();
+    // }
 
     waitForDisplayed(element, ms, reverse, error){
         element.waitForDisplayed();
