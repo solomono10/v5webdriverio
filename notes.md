@@ -190,7 +190,8 @@ f. Generate Configuration File
 
 
 
-
+## Jenkins pipeline
+https://www.edureka.co/blog/jenkins-pipeline-tutorial-continuous-delivery
 
 ## TeamCity
 https://www.jetbrains.com/teamcity/documentation/
