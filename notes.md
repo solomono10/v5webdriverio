@@ -58,7 +58,7 @@ d. Browse to http://127.0.0.1:PORT/wd/hub/static/resource/hub.html
     $ node filename.js
 
 e. install the cli
-   $ npm i --save-dev @wdio/cli
+   $ npm i @wdio/cli --save-dev
 
 f. Generate Configuration File
    $ ./node_modules/.bin/wdio config
@@ -182,23 +182,105 @@ f. Generate Configuration File
     Now, to set build triggers
     - Go to Build Triggers section
     - Check 'Build periodically'
-    - Enter cron value to specify build schedule 
+    - Enter cron value to specify build schedule
+
+    # sample build Jenkins pipeline script
+
+    https://jenkins.io/doc/book/pipeline/
+
+    e.g.
+
+    pipeline {
+        agent any
+        stages {
+            stage('run webdriverio project') {
+                steps {
+                    node('master'){
+                        git 'https://github.com/solomono10/v5webdriverio.git'
+                        sh 'npm install'
+                        sh 'npm test -- --baseUrl="$baseUrl" --logLevel="$logType" --spec="$testFile"'
+                    }
+                }
+            }
+        }
+        post {
+            success {
+                slackSend channel: '#jenkins-wdio',
+                    color: '#00a00d',
+                        message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+            }
+        }
+    }
 
 
 
+## Steps to setup Slack-Jenkins integration
+https://wiki.jenkins.io/display/JENKINS/Slack+Plugin
+https://jenkins.io/doc/pipeline/tour/post/
+
+Option 1. If you have slack channel already created, then ask your slack admin to give you the token for that channel.
+
+Option 2. Ask your slack admin to create a new channel and get the token for that channel.
+
+I. In Team Subdomain: type the name of <yourteam> as mentioned in my last post
+
+2. copy paste the Slack Token you got from option 1 or 2, in Integration Token edit box. Then copy the channel name from option 1 or 2 as #<yourchannel> name and test connection by clicking on Test Connection button.  And OR
+
+ 3. in Integration Token Credential ID edit box, click on Add Key button. A pop will display (see below image). 
+
+4. In the Kind dropdown select Secret Text.
+
+5. In the Secret  edit box, copy the token you got from  Option 1 or 2 above.
+
+6. Give it name in Description. eg. slackjenkins
+
+7. Click Add button and you will be back on configuration page
+
+8. Make sure in Integration Token Credential ID dropdown , you have newly created id in step 6 selected
+
+9. Click on Test, And if you see success then click on apply and save.
+
+10. In your Jenkins project pipeline configuration pipeline script, add a 'post' e.g.
+
+post {
+    success {
+        slackSend channel: '#jenkins-wdio',
+                  color: '#00a00d',
+                  message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+    }
 
 
+## Common Selenium and Webdriverio Error Messages (SOLVED)
+https://blog.kevinlamping.com/common-selenium-and-webdriverio-error-messages/
+
+
+## Docker
+https://docker-curriculum.com/
+https://www.youtube.com/watch?v=pGYAg7TMmp0
+
+
+## Allure reporter
+https://github.com/webdriverio-boneyard/wdio-allure-reporter
 
 
 ## Jenkins pipeline
 https://www.edureka.co/blog/jenkins-pipeline-tutorial-continuous-delivery
 
 ## TeamCity
+https://www.jetbrains.com/help/teamcity/installing-and-configuring-the-teamcity-server.html
 https://www.jetbrains.com/teamcity/documentation/
 
+## Install tomcat (needed for teamcity)
+https://crunchify.com/step-by-step-guide-to-setup-and-install-apache-tomcat-server-in-eclipse-development-environment-ide/
+
 ## BrowserStack
-https://www.browserstack.com/users/sign_up
 https://www.browserstack.com/automate/webdriverio
 
+## Parallel testing problems
+https://github.com/webdriverio/webdriverio/issues/1643
 
 https://semaphoreci.com/community/tutorials/setting-up-an-end-to-end-testing-workflow-with-gulp-mocha-and-webdriverio
+
+## Platform Configurator
+https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
+

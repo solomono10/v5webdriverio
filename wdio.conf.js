@@ -10,7 +10,17 @@
 var baseUrl = (process.env.SERVER === "prod") ? "http://www.google.com/" : "http://www.webdriveruniversity.com/";
 var timeout = process.env.DEBUG ? (24 * 60 * 60 * 1000) : 10000;
 
+// Browserstack automate credentials
+var browserstackusername = process.env.USER;
+var browserstackkey = process.env.KEY;
+
+// To run the tests from the cmdLine use...
+// $ USER=<enter-username> KEY=<enter-browserstack-key> ./node_modules/.bin/wdio wdio.conf.js
+
+
 exports.config = {
+    user: browserstackusername,
+    key: browserstackkey,
     //
     // ====================
     // Runner Configuration
@@ -68,6 +78,8 @@ exports.config = {
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
+
+        // name: 'Bstack-[WebdriverIO] Sample Test'
     }],
     //
     // ===================
@@ -116,7 +128,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: [],//
+    services: ['selenium-standalone'],//
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
