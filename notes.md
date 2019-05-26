@@ -250,6 +250,29 @@ post {
     }
 
 
+
+
+
+<!---------------- Teamcity installation ------------->
+https://askubuntu.com/questions/153177/sh-script-wont-run
+
+// You need to chmod the file 1st before run.
+$ chmod +x bin/*.sh     // chmod all files with the extension .sh
+$ chmod +x runAll.sh  // chmod runAll.sh
+
+// cd into the bin directory
+$ cd /Users/kayodeomo/Documents/TeamCity/bin
+
+// To start the server & the default agent
+cd /Users/kayodeomo/Documents/TeamCity/bin
+$ ./runAll.sh start
+
+// To stop the server & the default agent
+cd /Users/kayodeomo/Documents/TeamCity/bin
+$ ./runAll.sh stop
+
+
+
 ## Common Selenium and Webdriverio Error Messages (SOLVED)
 https://blog.kevinlamping.com/common-selenium-and-webdriverio-error-messages/
 
