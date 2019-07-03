@@ -307,3 +307,75 @@ https://semaphoreci.com/community/tutorials/setting-up-an-end-to-end-testing-wor
 ## Platform Configurator
 https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/
 
+
+## Selenium grid for RC and WebDriver
+https://github.com/SeleniumHQ/selenium/wiki/Grid2
+
+
+
+<!-- Docker -->
+## Create and start a container
+docker run <file-name>
+
+## run a container & open a container shell at the same time (Avoid because it prevents you running another command)
+$ docker run -it busybox sh
+
+NOTE:
+Test with the following commands
+# export b=5
+# echo $b
+# echo hello world
+# touch hi-there
+# ls
+
+## The docker run command is made up of the following two commands
+docker create <file-name>   // This will emit the container-id
+docker start -a <container-id>
+
+## Rather than use `docker start -a <container-id>` to output a record of logs,
+docker start <container-id>
+docker logs <container-id>
+
+NOTE: 
+docker logs <container-id> does not restart or close the container
+
+## lists the files in the image
+docker ls
+
+## outputs the state of the container
+docker ps
+
+## outputs the states of all container
+docker ps --all
+
+## deletes all containers
+docker system prune
+
+## stops the primary process on a container after 10secs (allows clean up)
+docker stop <container-id>
+
+## instantly stops the primary process on a container
+docker kill <container-id>
+
+## Write commands into a container
+docker exec -it <container-id> <enter-command>
+
+e.g. docker exec -it 32049fc9d0f7 redis-cli
+
+NOTE:
+`exec` helps to open up a shell inside a running container
+`-it` enables us to type commands directly into the container
+`it` is actually two commands in one i.e. `-i` & `-t`
+`-i` lets us send commands into our container
+`-t` lets us get commands from our container
+
+## type commands directly into our conteainer terminal
+$ docker exec -it <container-id> sh
+
+NOTE:
+Using the above command, we don't need to type `docker exec -it <container-id> <enter-command>` each time
+we need to send commands to the container.
+
+We can stop this terminal either with `ctr + c` or `ctr + d`
+
+
