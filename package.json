@@ -18,11 +18,18 @@
     "@wdio/selenium-standalone-service": "^5.8.4",
     "@wdio/spec-reporter": "^5.8.0",
     "@wdio/sync": "^5.8.6",
+    "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "sync-request": "^6.1.0",
+    "wdio-cucumber-framework": "^2.2.8",
+    "wdio-cucumber-steps": "0.0.4",
     "wdio-dot-reporter": "0.0.10",
     "webdriverio": "^5.8.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cucumber": "^5.1.0",
+    "grunt": "^1.0.4",
+    "npm": "^6.10.0"
+  }
 }
