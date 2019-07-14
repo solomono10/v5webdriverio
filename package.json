@@ -30,6 +30,8 @@
   "dependencies": {
     "cucumber": "^5.1.0",
     "grunt": "^1.0.4",
+    "lodash": "^4.17.14",
+    "lodash.merge": "^4.6.2",
     "npm": "^6.10.0"
   }
 }
